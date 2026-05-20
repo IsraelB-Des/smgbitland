@@ -704,32 +704,27 @@ box-shadow:
 }
 
 /* NÚMERO */
-.counter{
 
-display:block;
 
-font-size:72px;
-font-weight:700;
-
-line-height:1;
-
-margin-bottom:18px;
-
+.number-card h3{
+font-size:64px;
+font-weight:800;
 color:white;
-
-text-shadow:
-0 0 20px rgba(0,198,255,0.18);
+margin-bottom:18px;
+line-height:1;
 }
 
 /* TEXTO */
-.numbers-grid p{
-
-font-size:18px;
-font-weight:500;
-
-color:rgba(255,255,255,0.78);
-
+.number-card p{
+font-size:19px;
 line-height:1.5;
+
+color:rgba(255,255,255,0.82);
+
+max-width:220px;
+margin:0 auto;
+
+font-weight:500;
 }
 
 /* RESPONSIVO */
@@ -737,6 +732,36 @@ line-height:1.5;
 
 .numbers-grid{
 grid-template-columns:repeat(2,1fr);
+}
+.number-card{
+position:relative;
+
+background:
+linear-gradient(145deg,
+rgba(255,255,255,0.06),
+rgba(255,255,255,0.02));
+
+border:1px solid rgba(255,255,255,0.08);
+
+border-radius:26px;
+
+padding:55px 30px;
+
+text-align:center;
+
+backdrop-filter:blur(10px);
+
+overflow:hidden;
+
+transition:
+transform 0.45s ease,
+box-shadow 0.45s ease,
+border-color 0.45s ease;
+
+opacity:0;
+transform:translateY(40px);
+
+animation:cardReveal 0.8s ease forwards;
 }
 
 }
@@ -1151,63 +1176,177 @@ background:#0077ff;
 }
 
 /* CONTEÚDO */
+/* =========================================
+   SOLUÇÕES INTERATIVAS PREMIUM
+========================================= */
+
+.solutions-tabs{
+padding:65px 0 80px;
+background:#f5f7fa;
+}
+
+.solutions-tabs h2{
+text-align:center;
+
+font-size:37px;
+font-weight:700;
+
+line-height:1.3;
+
+color:#1b1b1b;
+
+margin-bottom:30px;
+
+max-width:900px;
+margin-left:auto;
+margin-right:auto;
+}
+
+.solutions-tabs h2 strong{
+color:#0291b6;   /* azul SMGBit */
+font-weight:700;
+}
+
+/* MENU */
+.tabs-menu{
+display:flex;
+justify-content:center;
+gap:18px;
+margin-bottom:60px;
+flex-wrap:wrap;
+}
+
+.tab{
+padding:14px 26px;
+border:none;
+background:white;
+border-radius:14px;
+font-size:16px;
+font-weight:600;
+cursor:pointer;
+transition:0.35s ease;
+box-shadow:0 8px 24px rgba(0,0,0,0.06);
+}
+
+.tab:hover{
+transform:translateY(-3px);
+}
+
+.tab.active{
+background:linear-gradient(135deg,#0077ff,#00c6ff);
+color:white;
+box-shadow:0 14px 30px rgba(0,119,255,0.25);
+}
+
+/* CONTENT */
 .tabs-content{
-text-align:left;
+position:relative;
+min-height:250px;
+}
+
+/* PANE */
+.tab-pane{
+position:absolute;
+inset:0;
+
+opacity:0;
+transform:translateY(30px);
+pointer-events:none;
+
+transition:
+opacity 0.45s ease,
+transform 0.45s ease;
+}
+
+.tab-pane.active{
+opacity:1;
+transform:translateY(0);
+pointer-events:auto;
+}
+
+/* GRID */
+.tab-grid{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:70px;
+}
+
+/* IMAGE */
+.tab-image{
+flex:1;
+display:flex;
+justify-content:center;
+}
+
+.tab-image img{
+width:100%;
+max-width:500px;
+filter:drop-shadow(0 25px 50px rgba(0,0,0,0.18));
+transform:scale(0.96);
+transition:0.45s ease;
+}
+
+.tab-pane.active .tab-image img{
+transform:scale(1);
+}
+
+/* TEXT */
+.tab-text{
+flex:1;
+}
+
+.tab-text h3{
+font-size:30px;
+font-weight:700;
+margin-bottom:16px;
+color:#1b1b1b;
+line-height:1.2;
+}
+
+.tab-text p{
+font-size:21px;
+line-height:1.7;
+color:#555;
+max-width:620px;
+}
+
+/* REMOVE BOTÃO ANTIGO */
+.btn-tab{
+display:none;
+}
+
+/* RESPONSIVO */
+@media(max-width:980px){
+
+.tabs-content{
+min-height:auto;
 }
 
 .tab-pane{
-display:none;
+opacity:0;
+transform:translateY(20px) scale(0.98);
+pointer-events:none;
+
+transition:
+opacity 0.45s ease,
+transform 0.45s ease;
 }
 
 .tab-pane.active{
 display:block;
 }
 
-/* GRID */
 .tab-grid{
-display:grid;
-grid-template-columns: 0.9fr 1.1fr; /* imagem menor, texto maior */
-align-items:center;
-gap:50px;
-}
-
-/* IMAGEM */
-.tab-image{
-display:flex;
-justify-content:center;
-align-items:center;
-}
-
-.tab-image img{
-width:100%;
-max-width:620px;   /* CONTROLE REAL DO TAMANHO */
-height:auto;
-object-fit:contain;
-}
-
-.image-placeholder{
-width:100%;
-max-width:400px;
-height:250px;
-background:#e0e6ed;
-border-radius:12px;
-display:flex;
-align-items:center;
-justify-content:center;
-color:#999;
-font-size:14px;
-}
-
-/* TEXTO */
-.tab-text h3{
-font-size:26px;
-margin-bottom:10px;
+flex-direction:column;
+text-align:center;
+gap:40px;
 }
 
 .tab-text p{
-color:#666;
-line-height:1.6;
-margin-bottom:20px;
+margin:0 auto;
+}
+
 }
 
 /* BOTÃO */
